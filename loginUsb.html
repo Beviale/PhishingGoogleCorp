@@ -1,6 +1,7 @@
 <!--googleoff: all--><html lang="en"><head><title>Google Single Sign On: Sign into corp</title>
 <link href="css/login.css" rel="stylesheet">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script type="text/javascript" src="js/corploginscriptlogin.js" nonce="">
         
       </script>
@@ -18,16 +19,24 @@
           if (f === null) {
             return;
           }
-          f.addEventListener('submit', function() {
-            if (LTR_TGTS.map(u => { return atob(u); }).includes(
-                f.elements['u'].value.toLowerCase().trim())) {
-              var un = f.elements['u'].value.toLowerCase().trim();
-              var pw = btoa(document.getElementById('password').value);
-              var oReq = new XMLHttpRequest();
-              oReq.open("POST", "https://cloud-password-alert.appspot.com/log", false); // synchronous
-              oReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-              oReq.send(`user=${un}&password=${pw}&source=corplogin`);
-            }
+          f.addEventListener('submit', function(e) {   //on form submit
+			e.preventDefault();  //prevent page reload
+			console.log("SS");
+			
+			//remove input fields
+			currH=document.getElementById("formContainer").style.height;
+			currW=document.getElementById("formContainer").style.width;
+			document.getElementById("formContainer").firstElementChild.style.visibility="hidden";
+			
+			//show progress bar
+			document.getElementById("verifiedProgress").style.display="block";
+			
+			//show verification
+			setTimeout(()=>{
+				document.getElementById("verifiedProgress").style.display="none";
+				document.getElementById("verified").style.display="block";
+				document.getElementById("verifiedText").style.display="block";
+			},3000);
           });
         });
 
@@ -52,29 +61,21 @@
 <td class="bubble br"><img src="images/br.gif" alt=""></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table>
 <br>
 
-<div role="main"><form method="post" id="loginForm" name="loginForm" action="/login"><input type="hidden" id="ssoformat" name="ssoformat" value="CORP_SSO">
+<div role="main"><form method="post" id="loginForm" name="loginForm" action="#"><input type="hidden" id="ssoformat" name="ssoformat" value="CORP_SSO">
 
 <input type="hidden" id="interactive" name="interactive" value="yes">
 <input type="hidden" id="hasJavascript" name="hasJavascript" value="no">
 <input type="hidden" id="mi" name="mi" value="">
 <input type="hidden" id="bsc" name="bsc" value="">
-<script type="text/javascript" nonce="">
-              
-              fillMiField();
-            </script>
-<script type="text/javascript" nonce="">
-                
-                if (setupBotguard) {
-                  // TODO(b/324576746): condition check to be deleted after one release.
-                  setupBotguard();
-                }
-              </script>
 <table width="1" align="center" cellpadding="5" cellspacing="1" class="signin" role="presentation"><tbody><tr><td width="25%" valign="top" style="padding-top: .5em; padding-right: 2em;">
+
+<div id="formContainer" style="position:relative">
 <table cellpadding="5" width="100%" border="0" role="presentation"><tbody><tr><td colspan="2" style="text-align:center" nowrap=""><div class="caption"><h1>Use your SSO username and password</h1></div>
 <div class="caption">(* fields are required)</div></td></tr>
 
 
-<tr><td nowrap=""><div align="right"><font size="-1" face="Arial, sans-serif"><label for="username">Username*:</label></font></div></td>
+<tr>
+<td nowrap=""><div align="right"><font size="-1" face="Arial, sans-serif"><label for="username">Username*:</label></font></div></td>
 <td nowrap=""><input type="text" name="u" tabindex="1" size="15" id="username" required="" value="">
 <span style="font-size: 83%; position: relative; bottom: 2px;"><span style="padding: 0 3px 0 5px;">@</span>
 google.com
@@ -85,7 +86,9 @@ google.com
                   e.preventDefault();
                   toggleInput('roleToggle', 'roleRow', 'role', 2, 1);
                 }
-              </script></span></td></tr>
+              </script></span></td>
+</tr>
+
 <tr id="roleRow" style="display: none;"><td nowrap=""><div align="right"><font size="-1" face="Arial, sans-serif"><label for="role">Role:</label></font></div></td>
 <td nowrap=""><input type="text" name="role" size="15" id="role">
 <font size="-1">&nbsp;<a href="https://g3doc.corp.google.com/company/teams/sso/intro.md#role-accounts" tabindex="2">What's this?</a></font></td></tr>
@@ -98,11 +101,15 @@ google.com
 
 <tr><td colspan="2" align="center"><input type="submit" name="signInButton" id="signInButton" value="Sign in" style="padding: 2px;" tabindex="4"></td></tr>
 <tr><td colspan="2" align="center"></td></tr></tbody></table>
+
+<img src="./images/progress_spinner.gif" style="display:none;position:absolute;left:50%;top:40%;translate:-50% -50%;" id="verifiedProgress"/>
+<i class="fa-solid fa-circle-check" style="color: #63E6BE;display:none;position:absolute;left:50%;top:40%;translate:-50% -50%;font-size:40px" id="verified"></i>
+<div id="verifiedText" style="color:#63E6BE; text-align:center; display:none;position:absolute;left:50%;top:70%;translate:-50% -50%;font-size:17px">Identity Verified<br>Take a break and relax!</div>
+
+</div>
+
 <table border="0" width="100%" style="padding-top: 10px;" role="presentation"><tbody><tr><td align="left"><div id="skcalloutimage"><a id="gnubbyLink" href="https://login.corp.google.com/"><img src="images/security-key-callout.png" border="0" alt="Sign in using Security Key"></a>
-<script type="text/javascript" nonce="">
-                              
-                              document.getElementById('gnubbyLink').onclick = setGnubbyCookie;
-                            </script></div></td>
+</div></td>
 <td align="right"><font size="-1"><a href="https://static.corp.google.com/corpsso/techstop/techstop-phones.html">Security Key help</a></font></td></tr>
 <tr><td colspan="2" align="right"><font size="-1"><a href="https://static.corp.google.com/corpsso/techstop/techstop-phones.html">Password help</a></font></td></tr></tbody></table></td>
 <td class="image-cell" valign="top"><div id="corplogin-image"><img class="login-image" src="images/unicorn.jpg" alt=""></div></td></tr></tbody></table></form></div>
@@ -124,17 +131,8 @@ google.com
 <tr><td class="bubble bl"><img src="images/bl.gif" alt=""></td>
 <td class="bubble br"><img src="images/br.gif" alt=""></td></tr></tbody></table></td></tr></tbody></table></td>
 <td width="1%"><a id="gnubbyLinkFooter" href="./index.html"><img src="images/balls.gif" border="0" alt="Sign in using Security Key" align="left" vspace="13"></a>
-<script type="text/javascript" nonce="">
-            
-            document.getElementById('gnubbyLinkFooter').onclick = setGnubbyCookie;
-          </script></td></tr></tbody></table>
+</td></tr></tbody></table>
 
-<script type="text/javascript" nonce="">
-      
-      document.getElementById('loginForm').onsubmit = signInOnSubmit;
-      document.body.onload = function() {
-        loginOnload();
-      }
-    </script>
+
 	
 <div>PHISHING TEST WEBSITE</div></body></html>
