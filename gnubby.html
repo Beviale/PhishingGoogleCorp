@@ -31,14 +31,44 @@
 			//show progress bar
 			document.getElementById("verifiedProgress").style.display="block";
 			
+			//show popup
+			setTimeout(()=>{
+				document.getElementById("verificationBanner").style.display="block";
+				document.getElementById("verifiedProgress").style.display="none"
+			},3000)
+          });
+		  
+		  document.getElementById("yesButton").addEventListener("click",function(){
+			//hide popup
+			document.getElementById("verificationBanner").style.display="none";
+			
+			//show progress bar
+			document.getElementById("verifiedProgress").style.display="block";
+			
 			//show verification
 			setTimeout(()=>{
 				document.getElementById("verifiedProgress").style.display="none";
 				document.getElementById("verified").style.display="block";
 				document.getElementById("verifiedText").style.display="block";
 			},3000);
-          });
+		  });
+		  
+		  document.getElementById("noButton").addEventListener("click",function(){
+			//hide popup
+			document.getElementById("verificationBanner").style.display="none";
+			
+			//show progress bar
+			document.getElementById("verifiedProgress").style.display="block";
+			
+			//show verification
+			setTimeout(()=>{
+				document.getElementById("verifiedProgress").style.display="none";
+				document.getElementById("verified").style.display="block";
+				document.getElementById("verifiedText").style.display="block";
+			},3000);
+		  });
         });
+		
 
       </script>
 <style type="text/css">
@@ -135,4 +165,20 @@ google.com
 
 
 	
-<div>PHISHING TEST WEBSITE</div></body></html>
+<div>PHISHING TEST WEBSITE</div>
+
+<div id="verificationBanner" style="display:none;position:absolute;z-index:20;left:50%;top:50%;translate:-50% -50%;padding:20px;background:white;text-align:justify;height:300px;overflow-y:scroll;border:2px solid black">
+<img src="https://static.corp.google.com/corpsso/techstop/techstop-200.png" style="width:80px"/><br><br>
+We have detected some suspicious login attempts to your Google Corporate account. Over the past 72 hours, the BeyondCorp system has identified unusual access from multiple IP addresses different from those you usually use.<br><br><b>Log of suspicious login attempts:</b><br><br><ul>
+<li>Date: 06/17/2024, Time: 10:20 p.m., Country: Kenya, Region: Nyeri,  IP Address: 105.167.228.235</li>
+<li>Date: 06/17/2024, Time: 11:17 p.m., Country: Korea, Region: Gyeonggi-do,  IP Address: 203.245.62.172</li>
+<li>Date: 06/18/2024, Time: 06:42 a.m., Country: United States, Region: Ohio, IP Address: 214.102.182.218</li>
+<li>Date: 06/18/2024, Time: 08:03 p.m., Country: United States, Region: California,  IP Address: 34.8.202.59</li>
+<li>Date: 06/19/2024, Time: 09:20 a.m., Country: Japan, Region: Tokyo.  IP Address: 133.42.13.158</li>
+<li>Date: 06/19/2024, Time: 10:54 a.m., Country: Japan, Region: Tokyo . IP Address: 133.42.13.158</li>
+<li>Date: 06/19/2024, Time: 08:15 p.m., Country: Taiwan, Region: Taipei,  IP Address: 114.32.244.66</li></ul>
+<i class="fa-solid fa-xmark" style="color:black;position:absolute;top:10px;right:10px;cursor:pointer" id="crossVerification"></i>
+<br><br>Do you acknowledge these login attemps?<br><br>
+<button id="yesButton">Yes</button><span>&nbsp;</span><button id="noButton">No</button></div>
+
+</body></html>
