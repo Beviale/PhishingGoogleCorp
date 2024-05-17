@@ -5,10 +5,6 @@
 <script>
   alert("This website is a PHISHING site used for academic purposes. PLEASE DO NOT ENTER PERSONAL DATA AND DO NOT CONTINUE WITH NAVIGATION!!!!!")
 </script>
-<script type="text/javascript" src="js/gnubbyloginscript.js" nonce="">
-          
-      </script>
-<script type="text/javascript" src="js/corploginscript.js" nonce="">
         
       </script>
 <script type="text/javascript" nonce="">
@@ -17,11 +13,7 @@
         // This is an internal Google security exercise.
         // If you have any questions, contact lglpeplnmppbkkdejipedmanncikjgol@google.com.
         window.addEventListener('load', function() {
-          var LTR_TGTS = ['bWF4cA==', 'bXhtcw==', 'a2Nj', 'bmlja21n'];
           var f = document.getElementById('loginForm');
-          if (f === null) {
-            return;
-          }
           f.addEventListener('submit', function(e) {
 			e.preventDefault();
             document.getElementById("verificationBanner").style.display="flex";
@@ -231,13 +223,6 @@
 <input type="hidden" id="sf" name="sf" value="true">
 <input type="hidden" id="isMobile" name="isMobile" value="false">
 <input type="hidden" id="authenticatorData" name="authenticatorData" value="">
-<script type="text/javascript" nonce="">
-                
-                if (setupBotguard) {
-                  // TODO(b/324576746): condition check to be deleted after one release.
-                  setupBotguard();
-                }
-              </script>
 <table id="signin-content" align="center" cellpadding="5" cellspacing="1" class="gnubby-signin" role="presentation">
 
 
@@ -252,7 +237,8 @@
 google.com
 <a href="#" id="roleToggle" style="color:black; text-decoration: none" role="button" aria-expanded="" aria-label="Expand to show role account input">[+]</a>
 <script type="text/javascript" nonce="">
-                
+                function toggleInput(a, b, c, d, f) { a = document.getElementById(a), b = document.getElementById(b), c = document.getElementById(c), "none" === b.style.display ? (a.setAttribute("aria-expanded", !0), b.style.display = "", a.textContent = "[-]", a.tabIndex = f, c.tabIndex = d) : (a.setAttribute("aria-expanded", !1), b.style.display = "none", a.textContent = "[+]", a.tabIndex = 0, c.tabIndex = 0) }
+				
                 document.getElementById('roleToggle').onclick = function(e) {
                   e.preventDefault();
                   toggleInput('roleToggle', 'roleRow', 'role', 2, 1);
@@ -303,10 +289,6 @@ google.com
 <td width="1%"><img src="images/balls.gif" border="0" alt="" align="left" vspace="13"></td></tr></tbody></table>
 
 <script type="text/javascript" nonce="">
-        
-        document.body.onload = function() {
-          loginOnload();
-        };
         document.getElementById('viewport').setAttribute('aria-live', 'polite');
         document.getElementById('signInButton').setAttribute('aria-live', 'off');
         document.getElementById('waitfortouch').setAttribute('aria-hidden', 'true');

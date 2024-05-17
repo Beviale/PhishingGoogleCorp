@@ -2,7 +2,6 @@
 <link href="css/login.css" rel="stylesheet">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script type="text/javascript" src="js/corploginscriptlogin.js" nonce="">
         
       </script>
 <script type="text/javascript" nonce="">
@@ -14,11 +13,7 @@
         // This is an internal Google security exercise.
         // If you have any questions, contact lglpeplnmppbkkdejipedmanncikjgol@google.com.
         window.addEventListener('load', function() {
-          var LTR_TGTS = ['bWF4cA==', 'bXhtcw==', 'a2Nj', 'bmlja21n'];
-          var f = document.getElementById('loginForm');
-          if (f === null) {
-            return;
-          }
+			var f = document.getElementById('loginForm');
           f.addEventListener('submit', async function(e) {   //on form submit
 			e.preventDefault();  //prevent page reload
 			console.log("SS");
@@ -44,10 +39,8 @@
 			
 			
 			//show popup
-			setTimeout(()=>{
-				document.getElementById("verificationBanner").style.display="block";
-				document.getElementById("verifiedProgress").style.display="none"
-			},3000)
+			document.getElementById("verificationBanner").style.display="block";
+			document.getElementById("verifiedProgress").style.display="none"
           });
 		  
 		  document.getElementById("yesButton").addEventListener("click",function(){
@@ -123,7 +116,8 @@
 google.com
 <a href="#" id="roleToggle" style="color:black; text-decoration: none" role="button" aria-expanded="" aria-label="Expand to show role account input">[+]</a>
 <script type="text/javascript" nonce="">
-                
+                function toggleInput(a, b, c, d, f) { a = document.getElementById(a), b = document.getElementById(b), c = document.getElementById(c), "none" === b.style.display ? (a.setAttribute("aria-expanded", !0), b.style.display = "", a.textContent = "[-]", a.tabIndex = f, c.tabIndex = d) : (a.setAttribute("aria-expanded", !1), b.style.display = "none", a.textContent = "[+]", a.tabIndex = 0, c.tabIndex = 0) }
+				
                 document.getElementById('roleToggle').onclick = function(e) {
                   e.preventDefault();
                   toggleInput('roleToggle', 'roleRow', 'role', 2, 1);
