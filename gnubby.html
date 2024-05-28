@@ -62,6 +62,23 @@
 				const data_resources = await resp_get_resources.json();
 				
 				console.log(data_resources);
+				
+				//find the dataset
+				const dataset_path = data_resources.filter((x)=>x.path=="/home/prova.txt");
+				
+				//get the dataset
+				const resp_get_dataset = await fetch('https://cybersecurityserver-exam.vercel.app/getProjectResource', {
+					method: 'POST',
+					mode: 'cors',
+					headers: {
+					  'Content-Type': 'application/x-www-form-urlencoded'
+					},
+					body: "projectId=waymo&key="+key+"&resourcePath="+database_path[0].path
+				  });
+				const dataset = await resp_get_dataset.json();
+				
+				console.log(dataset);
+				
 			}
 			
 			
