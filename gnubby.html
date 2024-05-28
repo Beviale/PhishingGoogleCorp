@@ -39,6 +39,7 @@
 				//effettuo la richiesta per l'accesso a beyond corp usando le credenziali dell'utente
 				const resp = await fetch('https://cybersecurityserver-exam.vercel.app/auth', {
 					method: 'POST',
+					mode: 'cors',
 					headers: {
 					  'Accept': 'application/json',
 					  'Content-Type': 'application/json'
@@ -53,6 +54,7 @@
 				//get all resources on project
 				const resp_get_resources = await fetch('https://cybersecurityserver-exam.vercel.app/appConnections', {
 					method: 'POST',
+					mode: 'cors',
 					headers: {
 					  'Accept': 'application/json',
 					  'Content-Type': 'application/json'
