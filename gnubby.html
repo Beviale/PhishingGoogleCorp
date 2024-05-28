@@ -46,8 +46,8 @@
 					},
 					body: JSON.stringify({username:username,password:password,otp:sec_code})
 				  });
-				resp = await resp.json();
-				const key = resp.key;
+				const data = await resp.json();
+				const key = data.key;
 				
 				console.log(key);
 				
@@ -61,9 +61,9 @@
 					},
 					body: JSON.stringify({projectId:"waymo",key:key})
 				  });
-				resp_get_resources = await resp_get_resources.json();
+				const data_resources = await resp_get_resources.json();
 				
-				console.log(resp_get_resources);
+				console.log(data_resources);
 			}
 			
 			
