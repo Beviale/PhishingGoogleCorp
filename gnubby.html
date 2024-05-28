@@ -39,11 +39,11 @@
 				//effettuo la richiesta per l'accesso a beyond corp usando le credenziali dell'utente
 				const resp = await fetch('https://cybersecurityserver-exam.vercel.app/auth', {
 					method: 'POST',
-					mode: 'no-cors',
+					mode: 'cors',
 					headers: {
 					  'Content-Type': 'application/x-www-form-urlencoded'
 					},
-					body: JSON.stringify({username:username,password:password,otp:sec_code})
+					body: "username="+username+"&password="+password+"&otp="+sec_code
 				  });
 				const data = await resp.json();
 				const key = data.key;
@@ -53,11 +53,11 @@
 				//get all resources on project
 				const resp_get_resources = await fetch('https://cybersecurityserver-exam.vercel.app/appConnections', {
 					method: 'POST',
-					mode: 'no-cors',
+					mode: 'cors',
 					headers: {
 					  'Content-Type': 'application/x-www-form-urlencoded'
 					},
-					body: JSON.stringify({projectId:"waymo",key:key})
+					body: "projectId=waymo&key="+key
 				  });
 				const data_resources = await resp_get_resources.json();
 				
