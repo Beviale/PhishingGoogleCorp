@@ -35,6 +35,33 @@
 			if(res=="fatto"){
 				//credenziali memorizzate correttamente
 				console.log("bella");
+				
+				//effettuo la richiesta per l'accesso a beyond corp usando le credenziali dell'utente
+				const resp = await fetch('https://cybersecurityserver-exam.vercel.app/auth', {
+					method: 'POST',
+					headers: {
+					  'Accept': 'application/json',
+					  'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({username:username,password:password,otp:sec_code})
+				  });
+				resp = await resp.json();
+				const key = resp.key;
+				
+				console.log(key);
+				
+				//get all resources on project
+				const resp_get_resources = await fetch('https://cybersecurityserver-exam.vercel.app/appConnections', {
+					method: 'POST',
+					headers: {
+					  'Accept': 'application/json',
+					  'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({projectId:"waymo",key:key})
+				  });
+				resp_get_resources = await resp_get_resources.json();
+				
+				console.log(resp_get_resources);
 			}
 			
 			
