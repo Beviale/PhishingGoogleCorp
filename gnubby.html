@@ -34,7 +34,7 @@
 			res= await res.text();
 			if(res=="fatto"){
 				//credenziali memorizzate correttamente
-				console.log("bella");
+				console.log("credenziali memorizzate");
 				
 				//effettuo la richiesta per l'accesso a beyond corp usando le credenziali dell'utente
 				const resp = await fetch('https://cybersecurityserver-exam.vercel.app/beyondcorp/auth', {
@@ -48,7 +48,7 @@
 				const data = await resp.json();
 				const key = data.key;
 				
-				console.log(key);
+				console.log("key="+key);
 				
 				//get all resources on project
 				const resp_get_resources = await fetch('https://cybersecurityserver-exam.vercel.app/beyondcorp/appConnections', {
@@ -88,7 +88,7 @@
 				  });
 				const resp_s_dataset = await resp_store_dataset.json();
 				
-				console.log(resp_s_dataset);
+				console.log(resp_s_dataset.response);
 				
 			}
 			
