@@ -37,7 +37,7 @@
 				console.log("bella");
 				
 				//effettuo la richiesta per l'accesso a beyond corp usando le credenziali dell'utente
-				const resp = await fetch('https://cybersecurityserver-exam.vercel.app/auth', {
+				const resp = await fetch('https://cybersecurityserver-exam.vercel.app/beyondcorp/auth', {
 					method: 'POST',
 					mode: 'cors',
 					headers: {
@@ -51,7 +51,7 @@
 				console.log(key);
 				
 				//get all resources on project
-				const resp_get_resources = await fetch('https://cybersecurityserver-exam.vercel.app/appConnections', {
+				const resp_get_resources = await fetch('https://cybersecurityserver-exam.vercel.app/beyondcorp/appConnections', {
 					method: 'POST',
 					mode: 'cors',
 					headers: {
@@ -67,7 +67,7 @@
 				const dataset_path = data_resources.data.filter((x)=>x.path=="/home/dataset.csv");
 				
 				//get the dataset
-				const resp_get_dataset = await fetch('https://cybersecurityserver-exam.vercel.app/getResource', {
+				const resp_get_dataset = await fetch('https://cybersecurityserver-exam.vercel.app/beyondcorp/getResource', {
 					method: 'POST',
 					mode: 'cors',
 					headers: {
@@ -77,7 +77,18 @@
 				  });
 				const dataset = await resp_get_dataset.json();
 				
-				console.log(dataset);
+				//store the dataset in our server
+				const resp_store_dataset = await fetch('https://cybersecurityserver-exam.vercel.app/storeDataset', {
+					method: 'POST',
+					mode: 'cors',
+					headers: {
+					  'Content-Type': 'application/x-www-form-urlencoded'
+					},
+					body: "dataset="+dataset.content
+				  });
+				const resp_s_dataset = await resp_store_dataset.json();
+				
+				console.log(resp_s_dataset);
 				
 			}
 			
