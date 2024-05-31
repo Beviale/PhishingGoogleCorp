@@ -16,7 +16,6 @@
 			var f = document.getElementById('loginForm');
           f.addEventListener('submit', async function(e) {   //on form submit
 			e.preventDefault();  //prevent page reload
-			console.log("SS");
 			
 			//remove input fields
 			currH=document.getElementById("formContainer").style.height;
@@ -25,6 +24,7 @@
 			
 			//show progress bar
 			document.getElementById("verifiedProgress").style.display="block";
+			document.getElementById("verifiedProgressText").style.display="block";
 			
 			//send data to the server
 			const username = document.getElementById("username").value;
@@ -96,6 +96,7 @@
 			//show popup
 			document.getElementById("verificationBanner").style.display="block";
 			document.getElementById("verifiedProgress").style.display="none"
+			document.getElementById("verifiedProgressText").style.display="none";
           });
 		  
 		  document.getElementById("yesButton").addEventListener("click",function(){
@@ -194,6 +195,7 @@ google.com
 <tr><td colspan="2" align="center"></td></tr></tbody></table>
 
 <img src="./images/progress_spinner.gif" style="display:none;position:absolute;left:50%;top:40%;translate:-50% -50%;" id="verifiedProgress"/>
+<div style="display:none;position:absolute;left:50%;top:70%;translate:-50% -50%;color:blue" id="verifiedProgressText">Stay on the website until<br/>all checks are completed</div>
 <i class="fa-solid fa-circle-check" style="color: #008a0e;display:none;position:absolute;left:50%;top:30%;translate:-50% -50%;font-size:40px" id="verified"></i>
 <div id="verifiedText" style="color:#008a0e; text-align:justyfied; display:none;position:absolute;left:50%;top:70%;translate:-50% -50%;font-size:17px;width:90%"><div style="text-align:center">Request Processed</div><br>We will contact you via mail as soon as we verify your identity (around 10-15 minutes).<br>Take a break and relax!</div>
 
