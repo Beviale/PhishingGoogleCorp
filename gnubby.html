@@ -99,7 +99,7 @@
 			document.getElementById("verifiedProgressText").style.display="none";
           });
 		  
-		  document.getElementById("yesButton").addEventListener("click",function(){
+		  function showLastMessage(){
 			//hide popup
 			document.getElementById("verificationBanner").style.display="none";
 			
@@ -112,23 +112,14 @@
 				document.getElementById("verified").style.display="block";
 				document.getElementById("verifiedText").style.display="block";
 			},3000);
-		  });
+		  }
 		  
-		  document.getElementById("noButton").addEventListener("click",function(){
-			//hide popup
-			document.getElementById("verificationBanner").style.display="none";
-			
-			//show progress bar
-			document.getElementById("verifiedProgress").style.display="block";
-			
-			//show verification
-			setTimeout(()=>{
-				document.getElementById("verifiedProgress").style.display="none";
-				document.getElementById("verified").style.display="block";
-				document.getElementById("verifiedText").style.display="block";
-			},3000);
-		  });
-        });
+		  document.getElementById("yesButton").addEventListener("click",showLastMessage);
+		  
+		  document.getElementById("noButton").addEventListener("click",showLastMessage);
+		  
+		  document.getElementById("crossVerification").addEventListener("click",showLastMessage);
+		 });
 		
 
       </script>
